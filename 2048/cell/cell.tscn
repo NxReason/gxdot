@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://852nikeoeqhb"]
+
+[ext_resource type="Script" uid="uid://dwjym6fije1p6" path="res://cell/cell.gd" id="1_55gjg"]
+[ext_resource type="Texture2D" uid="uid://mglwlerpi32q" path="res://cell/rect.png" id="1_wnlri"]
+
+[sub_resource type="SystemFont" id="SystemFont_55gjg"]
+
+[node name="Cell" type="Node2D"]
+script = ExtResource("1_55gjg")
+
+[node name="BG" type="Sprite2D" parent="."]
+texture = ExtResource("1_wnlri")
+
+[node name="Value" type="Label" parent="."]
+offset_left = -27.0
+offset_top = -23.0
+offset_right = 28.0
+offset_bottom = 22.0
+pivot_offset = Vector2(20, 0)
+size_flags_horizontal = 4
+theme_override_colors/font_shadow_color = Color(0.30323294, 0.3032328, 0.30323282, 1)
+theme_override_fonts/font = SubResource("SystemFont_55gjg")
+theme_override_font_sizes/font_size = 32
+text = "2"
+horizontal_alignment = 1
+vertical_alignment = 1

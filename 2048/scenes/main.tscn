@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://bqx4oqqnrxsrk"]
+
+[ext_resource type="Script" uid="uid://c8s2hbmrqpugq" path="res://scenes/main.gd" id="1_0wfyh"]
+[ext_resource type="PackedScene" uid="uid://da5r548mnipri" path="res://board/board.tscn" id="2_0wfyh"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_0wfyh")
+
+[node name="BG" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.08202248, 0.094265856, 0.105383165, 1)
+
+[node name="Board" parent="." instance=ExtResource("2_0wfyh")]
+position = Vector2(567, 317)
+
+[node name="ScoreLabel" type="Label" parent="."]
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 41.0
+offset_bottom = 108.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 48
+text = "Score: 0"
+horizontal_alignment = 1
+
+[connection signal="score_increased" from="Board" to="." method="_on_board_score_increased"]

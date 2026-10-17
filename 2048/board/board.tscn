@@ -1,0 +1,82 @@
+[gd_scene load_steps=5 format=3 uid="uid://da5r548mnipri"]
+
+[ext_resource type="Texture2D" uid="uid://dvio4o2oxt7tp" path="res://board/board_bg.png" id="1_5c38k"]
+[ext_resource type="Script" uid="uid://dk5xxvvfk030g" path="res://board/board.gd" id="1_vj8kq"]
+[ext_resource type="PackedScene" uid="uid://852nikeoeqhb" path="res://cell/cell.tscn" id="3_eiwly"]
+[ext_resource type="Texture2D" uid="uid://bn5ge78gltp4i" path="res://scenes/bg.png" id="4_eiwly"]
+
+[node name="Board" type="Node2D"]
+position = Vector2(593, 326)
+script = ExtResource("1_vj8kq")
+cell_scene = ExtResource("3_eiwly")
+shift_duration = 0.05
+
+[node name="BG" type="Sprite2D" parent="."]
+scale = Vector2(5, 5)
+texture = ExtResource("1_5c38k")
+
+[node name="CellBG Container" type="Node2D" parent="."]
+
+[node name="CellBG" type="Sprite2D" parent="CellBG Container"]
+position = Vector2(-115.2, -111)
+texture = ExtResource("4_eiwly")
+
+[node name="CellBG2" type="Sprite2D" parent="CellBG Container"]
+position = Vector2(-115.2, -38.4)
+texture = ExtResource("4_eiwly")
+
+[node name="CellBG3" type="Sprite2D" parent="CellBG Container"]
+position = Vector2(-115.2, 38.4)
+texture = ExtResource("4_eiwly")
+
+[node name="CellBG4" type="Sprite2D" parent="CellBG Container"]
+position = Vector2(-115.2, 115.2)
+texture = ExtResource("4_eiwly")
+
+[node name="CellBG5" type="Sprite2D" parent="CellBG Container"]
+position = Vector2(-38.4, -111)
+texture = ExtResource("4_eiwly")
+
+[node name="CellBG6" type="Sprite2D" parent="CellBG Container"]
+position = Vector2(-38.4, -38.4)
+texture = ExtResource("4_eiwly")
+
+[node name="CellBG7" type="Sprite2D" parent="CellBG Container"]
+position = Vector2(-38.4, 38.4)
+texture = ExtResource("4_eiwly")
+
+[node name="CellBG8" type="Sprite2D" parent="CellBG Container"]
+position = Vector2(-38.4, 115.2)
+texture = ExtResource("4_eiwly")
+
+[node name="CellBG9" type="Sprite2D" parent="CellBG Container"]
+position = Vector2(38.4, -111)
+texture = ExtResource("4_eiwly")
+
+[node name="CellBG10" type="Sprite2D" parent="CellBG Container"]
+position = Vector2(38.4, -38.4)
+texture = ExtResource("4_eiwly")
+
+[node name="CellBG11" type="Sprite2D" parent="CellBG Container"]
+position = Vector2(38.4, 38.4)
+texture = ExtResource("4_eiwly")
+
+[node name="CellBG12" type="Sprite2D" parent="CellBG Container"]
+position = Vector2(38.4, 115.2)
+texture = ExtResource("4_eiwly")
+
+[node name="CellBG13" type="Sprite2D" parent="CellBG Container"]
+position = Vector2(115.2, -111)
+texture = ExtResource("4_eiwly")
+
+[node name="CellBG14" type="Sprite2D" parent="CellBG Container"]
+position = Vector2(115.2, -38.4)
+texture = ExtResource("4_eiwly")
+
+[node name="CellBG15" type="Sprite2D" parent="CellBG Container"]
+position = Vector2(115.2, 38.4)
+texture = ExtResource("4_eiwly")
+
+[node name="CellBG16" type="Sprite2D" parent="CellBG Container"]
+position = Vector2(115.2, 115.2)
+texture = ExtResource("4_eiwly")
