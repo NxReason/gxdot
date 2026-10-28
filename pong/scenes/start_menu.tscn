@@ -1,0 +1,44 @@
+[gd_scene load_steps=2 format=3 uid="uid://dqe182ndd3o1x"]
+
+[ext_resource type="Script" uid="uid://xuapccjr6k86" path="res://scenes/start_menu.gd" id="1_ouf4f"]
+
+[node name="StartMenu" type="Node"]
+script = ExtResource("1_ouf4f")
+
+[node name="BG" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.13682577, 0.13682574, 0.13682571, 1)
+
+[node name="Start" type="Button" parent="."]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 30.0
+offset_top = -39.0
+offset_right = 180.0
+offset_bottom = 36.0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 48
+text = " Start"
+alignment = 0
+
+[node name="Quit" type="Button" parent="."]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 30.0
+offset_top = 60.0
+offset_right = 180.0
+offset_bottom = 135.0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 48
+text = " Quit
+"
+alignment = 0
+
+[connection signal="button_down" from="Start" to="." method="_on_start_button_down"]
+[connection signal="button_down" from="Quit" to="." method="_on_quit_button_down"]

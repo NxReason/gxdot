@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://b6wf4vtv0benm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_li83w"]
+size = Vector2(1019, 20)
+
+[node name="Wall" type="StaticBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(499.5, 0)
+shape = SubResource("RectangleShape2D_li83w")
+
+[node name="Top" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-10, -10, -10, 10, 1010, 10, 1010, -10)

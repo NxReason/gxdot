@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=3 uid="uid://8vxh1ruhgbcd"]
+
+[ext_resource type="Script" uid="uid://blhycxhv85ikb" path="res://scenes/main.gd" id="1_jyhfs"]
+[ext_resource type="PackedScene" uid="uid://c7g542lxq7ag7" path="res://actors/player.tscn" id="1_o5qli"]
+[ext_resource type="PackedScene" uid="uid://ykbv61gl3rig" path="res://actors/ball.tscn" id="1_sugp2"]
+[ext_resource type="PackedScene" uid="uid://b6wf4vtv0benm" path="res://actors/wall.tscn" id="2_0wfyh"]
+
+[node name="MainScene" type="Node"]
+script = ExtResource("1_jyhfs")
+ball = ExtResource("1_sugp2")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.11119691, 0.11119682, 0.11119688, 1)
+
+[node name="Player" parent="." instance=ExtResource("1_o5qli")]
+position = Vector2(35, 300)
+
+[node name="Player2" parent="." instance=ExtResource("1_o5qli")]
+position = Vector2(965, 300)
+
+[node name="Walls" type="Node2D" parent="."]
+
+[node name="Top" parent="Walls" instance=ExtResource("2_0wfyh")]
+
+[node name="Bottom" parent="Walls" instance=ExtResource("2_0wfyh")]
+position = Vector2(0, 650)
+
+[node name="HUD" type="Node" parent="."]
+
+[node name="Score" type="Label" parent="HUD"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 81.0
+offset_bottom = 104.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 64
+text = "22 : 15"
+horizontal_alignment = 1
