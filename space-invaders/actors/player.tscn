@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://bq2oxfsf6ir7j"]
+
+[ext_resource type="Script" uid="uid://dugjyutknsc25" path="res://actors/player.gd" id="1_mvpqy"]
+[ext_resource type="Texture2D" uid="uid://clokgaer8jtxi" path="res://assets/player.PNG" id="1_niuxy"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_niuxy"]
+radius = 35.0
+height = 120.0
+
+[node name="Player" type="CharacterBody2D"]
+z_index = 100
+collision_mask = 8
+script = ExtResource("1_mvpqy")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_niuxy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_niuxy")
+
+[node name="RocketPos" type="Marker2D" parent="."]
+position = Vector2(0, -65)

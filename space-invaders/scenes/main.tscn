@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://sql1p53u27wg"]
+
+[ext_resource type="Script" uid="uid://c7yehhurvqqn4" path="res://scenes/main.gd" id="1_0wfyh"]
+[ext_resource type="PackedScene" uid="uid://bq2oxfsf6ir7j" path="res://actors/player.tscn" id="1_o5qli"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_0wfyh")
+
+[node name="Player" parent="." instance=ExtResource("1_o5qli")]
+position = Vector2(800, 819)
+
+[node name="AttackTimer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]

@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://b1y8vymp7sxfa"]
+
+[ext_resource type="Texture2D" uid="uid://be6hlqe875n3b" path="res://assets/alien.PNG" id="1_e5cb7"]
+[ext_resource type="Script" uid="uid://d3k4hp0dha02h" path="res://actors/alien.gd" id="1_r6bpv"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_r6bpv"]
+radius = 34.0
+height = 110.0
+
+[node name="Alien" type="Area2D"]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_r6bpv")
+
+[node name="Visual" type="Sprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_e5cb7")
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+position = Vector2(0, 3)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_r6bpv")
