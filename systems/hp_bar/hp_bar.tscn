@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://ca1roi7lvy1j5"]
+
+[ext_resource type="Script" uid="uid://bhn8c8ilf0bcd" path="res://hp_bar/hp_bar.gd" id="1_mcd12"]
+
+[node name="HP_Bar" type="Panel"]
+offset_right = 400.0
+offset_bottom = 80.0
+script = ExtResource("1_mcd12")
+
+[node name="HP" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 50.0
+offset_bottom = 70.0
+color = Color(0.9098039, 0, 0, 1)
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

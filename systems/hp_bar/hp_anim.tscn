@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://bu7cxtyuuaojc"]
+
+[ext_resource type="Script" uid="uid://d7t4r4ily6k6" path="res://hp_bar/hp_anim.gd" id="1_xjkim"]
+
+[node name="HP_Anim" type="Panel"]
+offset_right = 400.0
+offset_bottom = 80.0
+script = ExtResource("1_xjkim")
+
+[node name="Bar" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 10.0
+offset_bottom = 70.0
+color = Color(0.89411765, 0.039215688, 0.043137256, 1)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
