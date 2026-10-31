@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://dy1xpkg24acf1"]
+[gd_scene load_steps=31 format=3 uid="uid://dy1xpkg24acf1"]
 
 [ext_resource type="Texture2D" uid="uid://bpmyqgv5bim7" path="res://player/sprites/Idle.png" id="1_oul6g"]
 [ext_resource type="Script" uid="uid://bpf6xra3sjk32" path="res://player/player.gd" id="1_rkbax"]
@@ -186,19 +186,31 @@ animations = [{
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oul6g"]
 height = 36.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_qjkh3"]
+
 [node name="Player" type="CharacterBody2D"]
+collision_mask = 6
 script = ExtResource("1_rkbax")
 
 [node name="Animator" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_boad6")
-animation = &"dash"
-frame = 1
+animation = &"attack"
+frame = 5
 frame_progress = 1.0
 
 [node name="Collider" type="CollisionShape2D" parent="."]
 position = Vector2(0, -4)
 shape = SubResource("CapsuleShape2D_oul6g")
+
+[node name="AttackCast" type="ShapeCast2D" parent="."]
+position = Vector2(-2.1316282e-14, -6)
+rotation = -1.5707964
+scale = Vector2(5, 5)
+enabled = false
+shape = SubResource("CircleShape2D_qjkh3")
+target_position = Vector2(0, 0)
+collision_mask = 4
 
 [connection signal="animation_finished" from="Animator" to="." method="_on_animation_finished"]

@@ -1,9 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://ds8irvrq0xqkw"]
+[gd_scene load_steps=3 format=3 uid="uid://ds8irvrq0xqkw"]
 
 [ext_resource type="PackedScene" uid="uid://dy1xpkg24acf1" path="res://player/player.tscn" id="1_txyty"]
+[ext_resource type="PackedScene" uid="uid://brpc2pee0krxb" path="res://enemies/orc/orc.tscn" id="2_vkcft"]
 
-[node name="Main" type="Node"]
+[node name="Main" type="Node2D"]
+y_sort_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("1_txyty")]
-position = Vector2(399, 393)
+z_index = 100
+position = Vector2(355, 336)
 speed = 300.0
+
+[node name="Orc" parent="." instance=ExtResource("2_vkcft")]
+z_index = 100
+position = Vector2(467, 337)
+speed = 100.0
+chase_limit = 400.0
