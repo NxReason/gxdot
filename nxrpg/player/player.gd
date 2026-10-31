@@ -4,8 +4,6 @@ extends CharacterBody2D
 @export var speed := 400.0
 @export var health := 1000.0
 
-var animator: PlayerAnimator
-
 enum State {
 	FREE,
 	ATTACK,
@@ -13,11 +11,16 @@ enum State {
 }
 var state := State.FREE
 
+var animator: PlayerAnimator
 var look_dir: Vector2
+var hp_current: float = health
+
+@onready var hp_bar: HealthBar = $HealthBar
 
 func _ready() -> void:
 	animator = PlayerAnimator.new($Animator)
 	look_dir = Vector2.RIGHT
+	hp_bar.setup(health, hp_current)
 
 
 func _physics_process(_delta: float) -> void:
@@ -63,12 +66,14 @@ func dash() -> void:
 # Attack
 @export var damage: float = 20.0
 @onready var attack_cast: ShapeCast2D = $AttackCast
+var attack_dir: Vector2
 
 func attack() -> void:
 	if state != State.FREE: return
 
 	if Input.is_action_just_pressed("attack"):
 		state = State.ATTACK
+		attack_dir = look_dir
 		animator.attack()
 
 
@@ -86,7 +91,7 @@ func check_hits():
 
 func try_damage(index: int) -> void:
 	var normal = attack_cast.get_collision_normal(index)
-	var dot = normal.dot(look_dir)
+	var dot = normal.dot(attack_dir)
 	if dot >= 0.0:
 		return
 
@@ -97,8 +102,8 @@ func try_damage(index: int) -> void:
 
 # Taking damage
 func take_damage(value: float) -> void:
-	health -= value
-	print('Player health: ', health)
+	hp_current -= value
+	hp_bar.update(hp_current)
 
 
 # One-shot animations finish

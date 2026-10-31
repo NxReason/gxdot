@@ -1,7 +1,7 @@
 class_name Orc
 extends CharacterBody2D
 
-@export var health: float = 100.0
+@export var health: float = 1000.0
 @export var speed: float = 200.0
 @export var damage: float = 100.0
 @export var chase_limit: float = 200.0
@@ -11,11 +11,14 @@ extends CharacterBody2D
 @onready var animator: AnimatedSprite2D = $Animator
 @onready var attack_cast: ShapeCast2D = $AttackCast
 @onready var attack_timer: Timer = $AttackDelay
+@onready var hp_bar: HealthBar = $HealthBar
 
 var target: Player = null
+var hp_current: float = health
 
 func _ready() -> void:
 	animator.play()
+	hp_bar.setup(health, hp_current)
 
 
 func _physics_process(_delta: float) -> void:
@@ -86,8 +89,10 @@ func flip_sprite(move_vector: Vector2):
 
 # Outside use
 func take_damage(value: float) -> void:
-	health -= value
-	print('Orc health: ', health)
+	hp_current -= value
+	hp_bar.update(hp_current)
+	if hp_current <= 0.0:
+		begin_death()
 
 
 # Signal handlers
@@ -98,13 +103,17 @@ func _on_detection_body_entered(body: Node2D) -> void:
 
 
 func _on_animator_animation_finished() -> void:
-	if state != State.ATTACK:
+	if state == State.ATTACK:
+		end_attack()
 		return
 
-	end_attack()
+	if state == State.DEATH:
+		queue_free()
 
 
 func _on_attack_delay_timeout() -> void:
+	if state == State.DEATH:
+		return
 	attack()
 
 
@@ -112,6 +121,7 @@ func _on_attack_delay_timeout() -> void:
 const ANIM_IDLE = 'idle'
 const ANIM_RUN = 'run'
 const ANIM_ATTACK = 'attack'
+const ANIM_DEATH = 'death'
 
 
 func play_animation(anim_name: String):
@@ -128,7 +138,8 @@ enum State {
 	IDLE,
 	CHASE,
 	RETREAT,
-	ATTACK
+	ATTACK,
+	DEATH
 }
 var state: State
 
@@ -169,3 +180,7 @@ func end_attack():
 	else:
 		# continue chasing the same target
 		begin_chase(target)
+
+func begin_death():
+	state = State.DEATH
+	play_oneshot(ANIM_DEATH)

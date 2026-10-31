@@ -10,6 +10,7 @@ y_sort_enabled = true
 z_index = 100
 position = Vector2(355, 336)
 speed = 300.0
+damage = 100.0
 
 [node name="Orc" parent="." instance=ExtResource("2_vkcft")]
 z_index = 100

@@ -1,9 +1,11 @@
-[gd_scene load_steps=29 format=3 uid="uid://brpc2pee0krxb"]
+[gd_scene load_steps=35 format=3 uid="uid://brpc2pee0krxb"]
 
 [ext_resource type="Texture2D" uid="uid://bmliu51v0144d" path="res://enemies/orc/Idle.png" id="1_80sil"]
 [ext_resource type="Texture2D" uid="uid://che6wqhqwngew" path="res://enemies/orc/Attack.png" id="1_jqg6c"]
 [ext_resource type="Script" uid="uid://b2li8e57awacj" path="res://enemies/orc/orc.gd" id="1_xp2d8"]
+[ext_resource type="Texture2D" uid="uid://cqes74d6m60pi" path="res://enemies/orc/Death.png" id="3_wjwvq"]
 [ext_resource type="Texture2D" uid="uid://yvqr3eoh8i78" path="res://enemies/orc/Run.png" id="3_xp2d8"]
+[ext_resource type="PackedScene" uid="uid://biy2pjxjm0gdj" path="res://ui/HealthBar.tscn" id="5_pqd2p"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v4q30"]
 atlas = ExtResource("1_jqg6c")
@@ -28,6 +30,22 @@ region = Rect2(400, 0, 100, 100)
 [sub_resource type="AtlasTexture" id="AtlasTexture_guxyk"]
 atlas = ExtResource("1_jqg6c")
 region = Rect2(500, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ikj2q"]
+atlas = ExtResource("3_wjwvq")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y26lw"]
+atlas = ExtResource("3_wjwvq")
+region = Rect2(100, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pyhdj"]
+atlas = ExtResource("3_wjwvq")
+region = Rect2(200, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0waai"]
+atlas = ExtResource("3_wjwvq")
+region = Rect2(300, 0, 100, 100)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ecl8x"]
 atlas = ExtResource("1_80sil")
@@ -112,6 +130,23 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_ikj2q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y26lw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pyhdj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0waai")
+}],
+"loop": false,
+"name": &"death",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_ecl8x")
 }, {
 "duration": 1.0,
@@ -176,12 +211,15 @@ radius = 150.0
 collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_xp2d8")
+health = 1000.0
 
 [node name="Animator" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_v4q30")
-animation = &"attack"
+animation = &"death"
+frame = 3
+frame_progress = 1.0
 
 [node name="Collider" type="CollisionShape2D" parent="."]
 visible = false
@@ -204,6 +242,10 @@ target_position = Vector2(0, 0)
 [node name="AttackDelay" type="Timer" parent="."]
 wait_time = 0.7
 one_shot = true
+
+[node name="HealthBar" parent="." instance=ExtResource("5_pqd2p")]
+position = Vector2(-33, -40)
+scale = Vector2(0.33, 0.33)
 
 [connection signal="animation_finished" from="Animator" to="." method="_on_animator_animation_finished"]
 [connection signal="body_entered" from="Detection" to="." method="_on_detection_body_entered"]
