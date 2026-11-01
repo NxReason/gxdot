@@ -1,5 +1,5 @@
 class_name Player
-extends CharacterBody2D
+extends Node2D
 
 @export var speed := 400.0
 @export var health := 1000.0
@@ -16,6 +16,8 @@ var look_dir: Vector2
 var hp_current: float = health
 
 @onready var hp_bar: HealthBar = $HealthBar
+@onready var body: CharacterBody2D = $Body
+@onready var base: StaticBody2D = $BaseArea
 
 func _ready() -> void:
 	animator = PlayerAnimator.new($Animator)
@@ -45,8 +47,9 @@ func move() -> void:
 	animator.set_dir(input)
 	animator.run()
 
-	velocity = input * speed
-	move_and_slide()
+	body.velocity = input * speed
+	body.move_and_slide()
+	position = body.position
 
 
 # Dash
@@ -54,8 +57,8 @@ func move() -> void:
 func dash() -> void:
 	# process current dash
 	if state == State.DASH:
-		velocity = look_dir * dash_speed
-		move_and_slide()
+		body.velocity = look_dir * dash_speed
+		body.move_and_slide()
 		return
 
 	# start new dash

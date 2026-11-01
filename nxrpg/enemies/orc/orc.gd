@@ -12,6 +12,8 @@ extends CharacterBody2D
 @onready var attack_cast: ShapeCast2D = $AttackCast
 @onready var attack_timer: Timer = $AttackDelay
 @onready var hp_bar: HealthBar = $HealthBar
+@onready var loot: LootTable = LootTable.new()
+@onready var detector: Area2D = $Detection
 
 var target: Player = null
 var hp_current: float = health
@@ -52,6 +54,10 @@ func retreat():
 		velocity = (initial_pos - position).normalized() * speed
 		move_and_slide()
 
+
+func die():
+	print(loot.gen_common_loot())
+	queue_free()
 
 # Attack
 var attack_dir: Vector2
@@ -107,8 +113,10 @@ func _on_animator_animation_finished() -> void:
 		end_attack()
 		return
 
+	# Death
 	if state == State.DEATH:
-		queue_free()
+		die()
+		return
 
 
 func _on_attack_delay_timeout() -> void:
@@ -150,12 +158,16 @@ func begin_chase(t):
 
 func begin_retreat():
 	state = State.RETREAT
-	target = null
 	play_animation(ANIM_RUN)
 	flip_sprite(initial_pos - position)
 
 func end_retreat():
+	if target in detector.get_overlapping_bodies():
+		begin_chase(target)
+		return
+
 	state = State.IDLE
+	target = null
 	position = initial_pos
 	play_animation(ANIM_IDLE)
 	animator.flip_h = false

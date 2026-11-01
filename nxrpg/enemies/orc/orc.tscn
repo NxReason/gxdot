@@ -208,18 +208,15 @@ radius = 150.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_pqd2p"]
 
 [node name="Orc" type="CharacterBody2D"]
-collision_layer = 4
-collision_mask = 3
+collision_layer = 256
+collision_mask = 49
 script = ExtResource("1_xp2d8")
-health = 1000.0
 
 [node name="Animator" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_v4q30")
-animation = &"death"
-frame = 3
-frame_progress = 1.0
+animation = &"idle"
 
 [node name="Collider" type="CollisionShape2D" parent="."]
 visible = false
