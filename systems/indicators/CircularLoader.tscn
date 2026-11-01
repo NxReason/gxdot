@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://d27iblpjg22rd"]
+
+[ext_resource type="Script" uid="uid://dlbplrxlmxod1" path="res://indicators/circular_loader.gd" id="1_ra3pt"]
+
+[node name="CircularLoader" type="Node2D"]
+position = Vector2(312, 240)
+script = ExtResource("1_ra3pt")
