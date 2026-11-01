@@ -15,6 +15,10 @@ run/main_scene="uid://ds8irvrq0xqkw"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+CollisionMap="*res://utils/col_map.gd"
+
 [dotnet]
 
 project/assembly_name="nxrpg"

@@ -1,5 +1,5 @@
 class_name Player
-extends Node2D
+extends CharacterBody2D
 
 @export var speed := 400.0
 @export var health := 1000.0
@@ -16,8 +16,6 @@ var look_dir: Vector2
 var hp_current: float = health
 
 @onready var hp_bar: HealthBar = $HealthBar
-@onready var body: CharacterBody2D = $Body
-@onready var base: StaticBody2D = $BaseArea
 
 func _ready() -> void:
 	animator = PlayerAnimator.new($Animator)
@@ -25,14 +23,14 @@ func _ready() -> void:
 	hp_bar.setup(health, hp_current)
 
 
-func _physics_process(_delta: float) -> void:
-	dash()
+func _physics_process(delta: float) -> void:
+	dash(delta)
 	attack()
-	move()
+	move(delta)
 
 
 # Move
-func move() -> void:
+func move(delta: float) -> void:
 	if state != State.FREE: return
 
 	var input = Input.get_vector("move_left", "move_right", "move_up", "move_down")
@@ -47,18 +45,19 @@ func move() -> void:
 	animator.set_dir(input)
 	animator.run()
 
-	body.velocity = input * speed
-	body.move_and_slide()
-	position = body.position
+	velocity = input * speed
+	constrain_move(delta)
+	move_and_slide()
 
 
 # Dash
 @export var dash_speed: float = 1000.0
-func dash() -> void:
+func dash(delta: float) -> void:
 	# process current dash
 	if state == State.DASH:
-		body.velocity = look_dir * dash_speed
-		body.move_and_slide()
+		velocity = look_dir * dash_speed
+		constrain_move(delta)
+		move_and_slide()
 		return
 
 	# start new dash
@@ -66,8 +65,35 @@ func dash() -> void:
 		state = State.DASH
 		animator.dash()
 
+
+# Additional colliders
+@onready var base_col: CollisionShape2D = $BaseArea/BaseShape
+func constrain_move(delta: float):
+	var motion := velocity * delta
+
+	if is_base_blocked(base_col.global_position + Vector2(motion.x, 0)):
+		velocity.x = 0
+	if is_base_blocked(base_col.global_position + Vector2(0, motion.y)):
+		velocity.y = 0
+
+
+func is_base_blocked(pos: Vector2) -> bool:
+	var query := PhysicsShapeQueryParameters2D.new()
+
+	query.shape = base_col.shape
+	query.transform = Transform2D(0.0, pos)
+	query.collision_mask = CollisionMap.PROPS
+	query.exclude = [self]
+
+	var space := get_world_2d().direct_space_state
+	var results = space.intersect_shape(query)
+	print(results.is_empty())
+
+	return not results.is_empty()
+
+
 # Attack
-@export var damage: float = 20.0
+@export var damage: float = 100.0
 @onready var attack_cast: ShapeCast2D = $AttackCast
 var attack_dir: Vector2
 

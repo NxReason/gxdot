@@ -18,4 +18,5 @@ z_index = 100
 position = Vector2(101, 240)
 
 [node name="Player" parent="." instance=ExtResource("1_txyty")]
+z_index = 100
 position = Vector2(127, 373)
