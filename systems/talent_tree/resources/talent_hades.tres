@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Talent" load_steps=3 format=3 uid="uid://drsodsg28lji6"]
+
+[ext_resource type="Script" uid="uid://ckbno7cjuppp5" path="res://talent_tree/resources/Talent.gd" id="1_4nsiw"]
+[ext_resource type="Texture2D" uid="uid://dcj5b2beq6drm" path="res://talent_tree/icons/hades-symbol.svg" id="1_kotw5"]
+
+[resource]
+script = ExtResource("1_4nsiw")
+id = "hades"
+name = "Hades"
+icon = ExtResource("1_kotw5")
+position = Vector2(400, 40)
+metadata/_custom_type_script = "uid://ckbno7cjuppp5"

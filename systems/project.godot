@@ -14,9 +14,19 @@ config/name="systems"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
+[display]
+
+window/size/viewport_width=1200
+window/size/viewport_height=660
+window/size/always_on_top=true
+
 [dotnet]
 
 project/assembly_name="systems"
+
+[gui]
+
+theme/default_font_multichannel_signed_distance_field=true
 
 [input]
 

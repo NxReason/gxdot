@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Talent" load_steps=3 format=3 uid="uid://d0m7x6mr5kmd"]
+
+[ext_resource type="Script" uid="uid://ckbno7cjuppp5" path="res://talent_tree/resources/Talent.gd" id="1_a2hfr"]
+[ext_resource type="Texture2D" uid="uid://dobre0jtxsima" path="res://talent_tree/icons/rune-sword.svg" id="1_bqvm6"]
+
+[resource]
+script = ExtResource("1_a2hfr")
+id = "rune"
+name = "Rune"
+icon = ExtResource("1_bqvm6")
+position = Vector2(200, 200)
+prerequisites = Array[String](["hades"])
+metadata/_custom_type_script = "uid://ckbno7cjuppp5"

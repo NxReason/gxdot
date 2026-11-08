@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Talent" load_steps=3 format=3 uid="uid://cwje6mhtjuuix"]
+
+[ext_resource type="Texture2D" uid="uid://dyb8h8vc1crhw" path="res://talent_tree/icons/liberty-wing.svg" id="1_4o5wm"]
+[ext_resource type="Script" uid="uid://ckbno7cjuppp5" path="res://talent_tree/resources/Talent.gd" id="1_et6fq"]
+
+[resource]
+script = ExtResource("1_et6fq")
+id = "liberty"
+name = "Liberty"
+icon = ExtResource("1_4o5wm")
+position = Vector2(400, 200)
+prerequisites = Array[String](["hades"])
+metadata/_custom_type_script = "uid://ckbno7cjuppp5"

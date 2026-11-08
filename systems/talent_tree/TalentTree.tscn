@@ -1,0 +1,68 @@
+[gd_scene load_steps=10 format=3 uid="uid://cafkgb6jy01g8"]
+
+[ext_resource type="Script" uid="uid://ckusk3iw8bu7l" path="res://talent_tree/talent_tree.gd" id="1_ebb10"]
+[ext_resource type="Script" uid="uid://ckbno7cjuppp5" path="res://talent_tree/resources/Talent.gd" id="2_2mjvg"]
+[ext_resource type="PackedScene" uid="uid://dvnvqyvexbrnr" path="res://talent_tree/TalentNode.tscn" id="2_d3s46"]
+[ext_resource type="Script" uid="uid://cdhhjlw64u2lc" path="res://talent_tree/connections.gd" id="2_xf16d"]
+[ext_resource type="Resource" uid="uid://bmtkvin1nbvoy" path="res://talent_tree/resources/talent_infinity.tres" id="4_fh7hb"]
+[ext_resource type="Resource" uid="uid://d0m7x6mr5kmd" path="res://talent_tree/resources/talent_rune.tres" id="5_h1frq"]
+[ext_resource type="Resource" uid="uid://drsodsg28lji6" path="res://talent_tree/resources/talent_hades.tres" id="6_sbcwe"]
+[ext_resource type="Resource" uid="uid://cwje6mhtjuuix" path="res://talent_tree/resources/talent_liberty.tres" id="7_mvl4y"]
+[ext_resource type="Resource" uid="uid://cd68v8jeu6ujn" path="res://talent_tree/resources/talent_omega.tres" id="8_3an55"]
+
+[node name="TalentTree" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ebb10")
+node_scene = ExtResource("2_d3s46")
+talent_resources = Array[ExtResource("2_2mjvg")]([ExtResource("4_fh7hb"), ExtResource("5_h1frq"), ExtResource("6_sbcwe"), ExtResource("7_mvl4y"), ExtResource("8_3an55")])
+
+[node name="BG" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.1254902, 0.1254902, 0.1254902, 1)
+
+[node name="Talents" type="Control" parent="."]
+layout_mode = 1
+anchor_top = 0.1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -0.27999878
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Connections" type="Control" parent="Talents"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_xf16d")
+
+[node name="PointsLabel" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -73.0
+offset_top = 10.0
+offset_right = 73.0
+offset_bottom = 50.0
+grow_horizontal = 2
+
+[node name="Prefix" type="Label" parent="PointsLabel"]
+layout_mode = 2
+text = "Available points: "
+
+[node name="Value" type="Label" parent="PointsLabel"]
+layout_mode = 2
+text = "0"
