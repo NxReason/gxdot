@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://b4pnlqiyjsl1a"]
+
+[ext_resource type="Script" uid="uid://kskqhe65molt" path="res://levels/main.gd" id="1_2262g"]
+[ext_resource type="PackedScene" uid="uid://dp73ur7m376nj" path="res://map/map.tscn" id="2_wdj6m"]
+[ext_resource type="PackedScene" uid="uid://dlis6g4xmyeq5" path="res://towers/tower.tscn" id="3_l8qe7"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_2262g")
+
+[node name="Map" parent="." instance=ExtResource("2_wdj6m")]
+
+[node name="Tower" parent="." instance=ExtResource("3_l8qe7")]
+position = Vector2(268, 446)

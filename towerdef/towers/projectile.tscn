@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://u6u5h1fcotc1"]
+
+[ext_resource type="Script" uid="uid://qeumf5ueqcmr" path="res://towers/projectile.gd" id="1_5m5s1"]
+[ext_resource type="Texture2D" uid="uid://cupe6knlr40k5" path="res://towers/proj.png" id="1_50udm"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5m5s1"]
+radius = 6.0
+height = 34.0
+
+[node name="Projectile" type="Area2D"]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_5m5s1")
+speed = 300.0
+
+[node name="Visual" type="Sprite2D" parent="."]
+z_index = 100
+texture = ExtResource("1_50udm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_5m5s1")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
