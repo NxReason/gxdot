@@ -1,0 +1,60 @@
+[gd_scene load_steps=3 format=3 uid="uid://k2rms7342crx"]
+
+[ext_resource type="Script" uid="uid://b846fja07yxf8" path="res://dict/dict.gd" id="1_8eke4"]
+[ext_resource type="PackedScene" uid="uid://d6db6opsgs2f" path="res://dict/kanji_entry.tscn" id="2_afbsg"]
+
+[node name="Dict" type="Node"]
+script = ExtResource("1_8eke4")
+kanji_scene = ExtResource("2_afbsg")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BG" type="ColorRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.37254903, 0.1764706, 0.60784316, 1)
+
+[node name="Margin" type="MarginContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="VBox" type="VBoxContainer" parent="Control/Margin"]
+layout_mode = 2
+
+[node name="Header" type="Label" parent="Control/Margin/VBox"]
+layout_mode = 2
+text = "Kanji List"
+
+[node name="KanjiGrid" type="GridContainer" parent="Control/Margin/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+columns = 8
+
+[node name="NewKanji" type="PanelContainer" parent="Control/Margin/VBox/KanjiGrid"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button" type="Button" parent="Control/Margin/VBox/KanjiGrid/NewKanji"]
+layout_mode = 2
+text = "+
+Add kanji"

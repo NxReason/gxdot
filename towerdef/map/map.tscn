@@ -21,12 +21,9 @@ tile_map_data = PackedByteArray("AAACAAUAAAABAAEAAAADAAUAAAABAAEAAAAEAAUAAAABAAE
 tile_set = ExtResource("1_hgrid")
 
 [node name="EnemyPath" type="Path2D" parent="."]
-scale = Vector2(1, 0.99120635)
 curve = ExtResource("2_lgq1i")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="EnemyPath"]
-position = Vector2(5, 615.01886)
-rotation = -0.067527756
 
 [node name="EnemySpawner" type="Node" parent="." node_paths=PackedStringArray("path")]
 script = ExtResource("3_kffv2")
