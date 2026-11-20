@@ -1,0 +1,154 @@
+[gd_scene load_steps=3 format=3 uid="uid://fws5506rc4l3"]
+
+[ext_resource type="Script" uid="uid://b2rlnwu2k3me8" path="res://dict/new_kanji.gd" id="1_8wh6a"]
+[ext_resource type="Theme" uid="uid://dvlvpdqh1ow1u" path="res://shared/jtype_main.tres" id="1_e114f"]
+
+[node name="NewKanji" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8wh6a")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.09803922, 0.09803922, 0.09803922, 1)
+
+[node name="VBox" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -88.0
+offset_top = -74.0
+offset_right = 88.0
+offset_bottom = 31.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Header" type="Label" parent="VBox"]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "New Kanji"
+horizontal_alignment = 1
+
+[node name="GlyphHBox" type="HBoxContainer" parent="VBox"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="GlyphLabel" type="Label" parent="VBox/GlyphHBox"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Glyph"
+horizontal_alignment = 2
+
+[node name="LineEdit" type="LineEdit" parent="VBox/GlyphHBox"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+theme = ExtResource("1_e114f")
+placeholder_text = "人"
+
+[node name="OnHBox" type="HBoxContainer" parent="VBox"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="OnLabel" type="Label" parent="VBox/OnHBox"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "On"
+horizontal_alignment = 2
+
+[node name="LineEdit" type="LineEdit" parent="VBox/OnHBox"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+theme = ExtResource("1_e114f")
+
+[node name="KunHBox" type="HBoxContainer" parent="VBox"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="KunLabel" type="Label" parent="VBox/KunHBox"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Kun"
+horizontal_alignment = 2
+
+[node name="LineEdit" type="LineEdit" parent="VBox/KunHBox"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+theme = ExtResource("1_e114f")
+
+[node name="MeaningsHBox" type="HBoxContainer" parent="VBox"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="MeaningsLabel" type="Label" parent="VBox/MeaningsHBox"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Meanings"
+horizontal_alignment = 2
+
+[node name="LineEdit" type="LineEdit" parent="VBox/MeaningsHBox"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+theme = ExtResource("1_e114f")
+
+[node name="TagsHBox" type="HBoxContainer" parent="VBox"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="TagsLabel" type="Label" parent="VBox/TagsHBox"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Tags"
+horizontal_alignment = 2
+
+[node name="LineEdit" type="LineEdit" parent="VBox/TagsHBox"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+theme = ExtResource("1_e114f")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBox"]
+layout_mode = 2
+theme_override_constants/margin_top = 5
+
+[node name="ControlsHBox" type="HBoxContainer" parent="VBox/MarginContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="SaveButton" type="Button" parent="VBox/MarginContainer/ControlsHBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_e114f")
+theme_override_font_sizes/font_size = 14
+text = "Save"
+
+[node name="ResetButton" type="Button" parent="VBox/MarginContainer/ControlsHBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_e114f")
+theme_override_font_sizes/font_size = 14
+text = "Reset"
+
+[node name="Cancel" type="Button" parent="VBox/MarginContainer/ControlsHBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_e114f")
+theme_override_font_sizes/font_size = 14
+text = "Cancel"
+
+[connection signal="button_down" from="VBox/MarginContainer/ControlsHBox/SaveButton" to="." method="_on_save_button_button_down"]
+[connection signal="button_down" from="VBox/MarginContainer/ControlsHBox/ResetButton" to="." method="_on_reset_button_button_down"]
+[connection signal="button_down" from="VBox/MarginContainer/ControlsHBox/Cancel" to="." method="_on_cancel_button_down"]

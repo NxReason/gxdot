@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://b6otqa3gj7dup"]
+[gd_scene load_steps=3 format=3 uid="uid://b6otqa3gj7dup"]
 
 [ext_resource type="Script" uid="uid://cl2wka6s23fjb" path="res://scenes/main_menu.gd" id="1_l6cm7"]
+[ext_resource type="Theme" uid="uid://dvlvpdqh1ow1u" path="res://shared/jtype_main.tres" id="2_ekxnf"]
 
 [node name="MainMenu" type="Node"]
 script = ExtResource("1_l6cm7")
@@ -20,7 +21,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.37254903, 0.1764706, 0.60784316, 1)
+color = Color(0.09803922, 0.09803922, 0.09803922, 1)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control"]
 layout_mode = 1
@@ -38,15 +39,18 @@ grow_vertical = 2
 
 [node name="PlayButton" type="Button" parent="Control/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("2_ekxnf")
 text = "Start"
 
 [node name="DictButton" type="Button" parent="Control/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("2_ekxnf")
 text = "Dict
 "
 
 [node name="ExitButton" type="Button" parent="Control/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("2_ekxnf")
 text = "Exit"
 
 [connection signal="button_down" from="Control/VBoxContainer/PlayButton" to="." method="_on_play_button_button_down"]

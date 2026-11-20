@@ -11,8 +11,13 @@ config_version=5
 [application]
 
 config/name="jtype"
+run/main_scene="uid://b6otqa3gj7dup"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+SceneManager="*res://shared/scene_manager.gd"
 
 [dotnet]
 
