@@ -41,16 +41,6 @@ static func read() -> Dictionary[String, Kanji]:
 
 
 static func save(kanji_entry) -> void:
-	# TODO: add id instead of saving to array
-	# var kanji_file := FileAccess.open(FILE_PATH, FileAccess.READ_WRITE)
-	# if not kanji_file:
-	# 	FileAccess.open(FILE_PATH, FileAccess.WRITE)
-	# 	kanji_file = FileAccess.open(FILE_PATH, FileAccess.READ_WRITE)
-	# 	kanji_file.store_string("[]")
-	# # read kanji
-	# var kanji_json_text = kanji_file.get_as_text()
-	# var kanji_json = JSON.new()
-	# var error = kanji_json.parse(kanji_json_text)
 	var res := read_file()
 
 	if res.error != OK:
@@ -58,8 +48,6 @@ static func save(kanji_entry) -> void:
 		return
 
 	res.json.data[Utils.uuid()] = kanji_entry
-	# kanji_file.store_string(JSON.stringify(kanji_json.data, '\t'))
-	# kanji_file.close()
 	save_file(res.file, res.json.data)
 
 

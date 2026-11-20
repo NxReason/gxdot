@@ -40,7 +40,16 @@ theme_override_constants/margin_bottom = 32
 [node name="VBox" type="VBoxContainer" parent="Control/Margin"]
 layout_mode = 2
 
-[node name="Header" type="Label" parent="Control/Margin/VBox"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/Margin/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="GoBackButton" type="Button" parent="Control/Margin/VBox/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_fefoq")
+text = " Go back "
+
+[node name="Header" type="Label" parent="Control/Margin/VBox/HBoxContainer"]
 layout_mode = 2
 text = "Kanji List"
 
@@ -62,4 +71,5 @@ theme = ExtResource("3_fefoq")
 text = "+
 Add kanji"
 
+[connection signal="button_down" from="Control/Margin/VBox/HBoxContainer/GoBackButton" to="." method="_on_go_back_button_button_down"]
 [connection signal="button_down" from="Control/Margin/VBox/KanjiGrid/NewKanji/Button" to="." method="_on_button_button_down"]

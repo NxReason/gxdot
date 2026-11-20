@@ -7,6 +7,7 @@ var kanji_visuals: Dictionary[String, KanjiVisual] = {}
 
 @onready var kanji_container: GridContainer = $Control/Margin/VBox/KanjiGrid
 
+
 func _init() -> void:
 	kanji_list = Kanji.read()
 
@@ -39,5 +40,10 @@ func handle_delete_kanji(id: String):
 	kanji_visuals.erase(id)
 	visual.queue_free()
 
+
 func _on_button_button_down() -> void:
 	SceneManager.load_new_kanji()
+
+
+func _on_go_back_button_button_down() -> void:
+	SceneManager.load_main()
