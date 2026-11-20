@@ -39,6 +39,7 @@ func disappear():
 	visual.visible = false
 	glyph.visible = false
 	particles.emitting = true
+	finished.emit(self)
 
 
 func set_y_pos():
@@ -49,5 +50,4 @@ func set_y_pos():
 
 
 func _on_particles_finished() -> void:
-	finished.emit(self)
 	queue_free()

@@ -2,7 +2,8 @@ extends Node2D
 
 @export var enemy_scene: PackedScene
 
-const INITIAL_ENEMY_COUNT := 4
+const INITIAL_ENEMY_COUNT := 5
+const REGULAR_ENEMY_COUNT := 3
 
 const ROWS := 10
 const COLS := 10
@@ -24,7 +25,7 @@ func _ready() -> void:
 	player_input.grab_focus()
 
 
-func spawn_enemies(count: int = 5):
+func spawn_enemies(count: int = REGULAR_ENEMY_COUNT):
 	var cols := pick_random_cols(count)
 	var kanjis = Utils.pick_random_n(kanji_list.keys(), count)
 
@@ -68,19 +69,17 @@ func clear_enemy(enemy: KanjiEnemy):
 
 	if enemies.size() == 0:
 		step_interval.start()
-		spawn_enemies(6)
+		spawn_enemies(INITIAL_ENEMY_COUNT)
 
-func _process(_delta: float) -> void:
-	print(step_interval.time_left)
 
 func _on_step_interval_timeout() -> void:
 	for enemy in enemies:
 		enemy.move()
 
-	if enemies.size() < 4:
-		spawn_enemies(6)
+	if enemies.size() < REGULAR_ENEMY_COUNT:
+		spawn_enemies(INITIAL_ENEMY_COUNT)
 	else:
-		spawn_enemies(3)
+		spawn_enemies(REGULAR_ENEMY_COUNT)
 
 
 class Bounds:
@@ -98,11 +97,12 @@ func _on_player_input_text_changed(new_text: String) -> void:
 
 
 func try_hit(text: String) -> bool:
-	var is_hit := false
-
+	var hit_enemies: Array[KanjiEnemy] = []
 	for enemy in enemies:
 		if text in enemy.kanji.meanings:
-			is_hit = true
-			enemy.disappear()
+			hit_enemies.push_back(enemy)
 
-	return is_hit
+	for hit_enemy in hit_enemies:
+		hit_enemy.disappear()
+
+	return hit_enemies.size() > 0

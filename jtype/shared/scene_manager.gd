@@ -3,7 +3,7 @@ extends Node
 const MAIN := "res://scenes/main_menu.tscn"
 const DICT := "res://dict/dict.tscn"
 const NEW_KANJI := "res://dict/new_kanji.tscn"
-const GAME := "res://kanji/kanji_type.tscn"
+const GAME := "res://game/kanji_type.tscn"
 
 
 func load_main():
