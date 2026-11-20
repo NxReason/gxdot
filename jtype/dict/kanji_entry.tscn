@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://d6db6opsgs2f"]
+[gd_scene load_steps=3 format=3 uid="uid://d6db6opsgs2f"]
 
 [ext_resource type="Script" uid="uid://cy5aft57jhfhb" path="res://dict/kanji_entry.gd" id="1_0s4o1"]
+[ext_resource type="Theme" uid="uid://dvlvpdqh1ow1u" path="res://shared/jtype_main.tres" id="2_ujvbn"]
 
 [node name="KanjiEntry" type="PanelContainer"]
 offset_right = 120.0
@@ -43,3 +44,11 @@ text = "Meanings"
 layout_mode = 2
 theme_override_font_sizes/font_size = 12
 text = "Tags"
+
+[node name="Button" type="Button" parent="Margin/VBox"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_ujvbn")
+text = " DEL "
+
+[connection signal="button_down" from="Margin/VBox/Button" to="." method="_on_button_button_down"]

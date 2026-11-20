@@ -1,6 +1,9 @@
-class_name KanjiEntry
+class_name KanjiVisual
 extends PanelContainer
 
+signal delete_kanji(id: String)
+
+var id: String
 var kanji: Kanji
 
 @onready var glyph: Label = $Margin/VBox/Glyph
@@ -20,3 +23,7 @@ func _ready() -> void:
 	kun_readings.text = ', '.join(kanji.kun_readings)
 	meanings.text = ', '.join(kanji.meanings)
 	tags.text = ', '.join(kanji.tags)
+
+
+func _on_button_button_down() -> void:
+	delete_kanji.emit(id)
