@@ -1,12 +1,19 @@
-[gd_scene load_steps=2 format=3 uid="uid://s10f0fy4ifwc"]
+[gd_scene load_steps=3 format=3 uid="uid://s10f0fy4ifwc"]
 
 [ext_resource type="Script" uid="uid://fdrd33eocrs0" path="res://game/kanji_enemy.gd" id="1_6551b"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6551b"]
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+spread = 180.0
+initial_velocity_max = 200.01
+gravity = Vector3(0, 98, 0)
 
 [node name="KanjiEnemy" type="Node2D"]
 script = ExtResource("1_6551b")
 
-[node name="Polygon2D" type="Polygon2D" parent="."]
-color = Color(0.757406, 0.36861688, 0.09976629, 1)
+[node name="Visual" type="Polygon2D" parent="."]
+color = Color(0.5043054, 0.37423474, 0.9164781, 1)
 polygon = PackedVector2Array(-25, -25, 25, -25, 25, 25, -25, 25)
 
 [node name="Label" type="Label" parent="."]
@@ -17,3 +24,13 @@ offset_bottom = 17.0
 theme_override_font_sizes/font_size = 24
 text = "人"
 horizontal_alignment = 1
+
+[node name="Particles" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 25
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_6551b")
+
+[connection signal="finished" from="Particles" to="." method="_on_particles_finished"]

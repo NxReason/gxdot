@@ -7,23 +7,35 @@ const INITIAL_ENEMY_COUNT := 4
 const ROWS := 10
 const COLS := 10
 
+var kanji_list: Dictionary[String, Kanji] = {}
 var bounds: Bounds = Bounds.new()
 var enemies: Array[KanjiEnemy] = []
 
+
+func _init() -> void:
+	kanji_list = Kanji.read()
+
+
 func _ready() -> void:
-	spawn_enemy()
+	spawn_enemies(INITIAL_ENEMY_COUNT)
 
 
-func spawn_enemy(count: int = 5):
+func spawn_enemies(count: int = 5):
 	var cols := pick_random_cols(count)
-	for col in cols:
+	var kanjis = Utils.pick_random_n(kanji_list.keys(), count)
+
+	for i in range(count):
+		var col := cols[i]
+		var kanji_id = kanjis[i]
 		var enemy_x := get_x_pos(col)
-		print('For column %d x is - %f' % [col, enemy_x])
 		var enemy := enemy_scene.instantiate() as KanjiEnemy
 		enemy.position.x = enemy_x
 		enemy.max_row = ROWS
 		enemy.height_range = Vector2(bounds.start, bounds.end)
+		enemy.connect('finished', clear_enemy)
+
 		add_child(enemy)
+		enemy.set_kanji(kanji_list[kanji_id])
 		enemies.push_back(enemy)
 
 
@@ -45,6 +57,10 @@ func get_x_pos(col: int) -> float:
 	var width := bounds.right - bounds.left
 	var step := float(width) / (COLS - 1)
 	return bounds.left + step * col
+
+
+func clear_enemy(enemy: KanjiEnemy):
+	enemies.erase(enemy)
 
 
 func _on_step_interval_timeout() -> void:
