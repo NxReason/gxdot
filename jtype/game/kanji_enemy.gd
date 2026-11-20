@@ -4,10 +4,10 @@ extends Node2D
 signal finished(enemy: KanjiEnemy)
 
 var kanji: Kanji
+var is_disappearing: bool = false
 var row: int = 0
 var col: int = 0
 var max_row: int = 10
-
 # x - top, y - bottom
 var height_range: Vector2
 
@@ -25,13 +25,17 @@ func set_kanji(k: Kanji):
 	glyph.text = kanji.glyph
 
 func move():
+	if is_disappearing: return
+
 	row += 1
 	if row == max_row:
 		disappear()
-	set_y_pos()
+	else:
+		set_y_pos()
 
 
 func disappear():
+	is_disappearing = true
 	visual.visible = false
 	glyph.visible = false
 	particles.emitting = true

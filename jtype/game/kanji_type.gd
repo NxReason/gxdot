@@ -11,6 +11,9 @@ var kanji_list: Dictionary[String, Kanji] = {}
 var bounds: Bounds = Bounds.new()
 var enemies: Array[KanjiEnemy] = []
 
+@onready var player_input: LineEdit = $PlayerInput
+@onready var step_interval: Timer = $StepInterval
+
 
 func _init() -> void:
 	kanji_list = Kanji.read()
@@ -18,6 +21,7 @@ func _init() -> void:
 
 func _ready() -> void:
 	spawn_enemies(INITIAL_ENEMY_COUNT)
+	player_input.grab_focus()
 
 
 func spawn_enemies(count: int = 5):
@@ -62,10 +66,21 @@ func get_x_pos(col: int) -> float:
 func clear_enemy(enemy: KanjiEnemy):
 	enemies.erase(enemy)
 
+	if enemies.size() == 0:
+		step_interval.start()
+		spawn_enemies(6)
+
+func _process(_delta: float) -> void:
+	print(step_interval.time_left)
 
 func _on_step_interval_timeout() -> void:
 	for enemy in enemies:
 		enemy.move()
+
+	if enemies.size() < 4:
+		spawn_enemies(6)
+	else:
+		spawn_enemies(3)
 
 
 class Bounds:
@@ -73,3 +88,21 @@ class Bounds:
 	var end: int = 580
 	var left: int = 200
 	var right: int = 952
+
+
+# hitting enemies
+func _on_player_input_text_changed(new_text: String) -> void:
+	var is_hit := try_hit(new_text)
+	if is_hit:
+		player_input.text = ''
+
+
+func try_hit(text: String) -> bool:
+	var is_hit := false
+
+	for enemy in enemies:
+		if text in enemy.kanji.meanings:
+			is_hit = true
+			enemy.disappear()
+
+	return is_hit
